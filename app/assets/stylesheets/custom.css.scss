@@ -1,5 +1,14 @@
 @import "bootstrap";
 
+$gray-medium-light: #eaeaea;
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 /* universal ----------------------------*/
 
 
@@ -74,9 +83,6 @@ p {
 
 /* footer ---------------------------*/
 
-
-$grayMediumLight: #eaeaea;
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -99,4 +105,15 @@ footer {
       margin-left: 10px;
     }
   }
+}
+
+
+/* miscellaneous ----------------------------------*/
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }
