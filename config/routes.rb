@@ -67,3 +67,4 @@ resources :users
   #     resources :products
   #   end
 end
+ 
