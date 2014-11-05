@@ -1,4 +1,5 @@
 SampleApp::Application.routes.draw do
+  get "sessions/new"
   get "users/new"
   #get "static_pages/home"
 root  'static_pages#home'
@@ -10,6 +11,12 @@ match '/about', to: 'static_pages#about', via: 'get'
 match '/contact', to: 'static_pages#contact', via: 'get'
 
 match '/signup',  to: 'users#new',            via: 'get'
+
+
+get 'login' => 'sessions#new'
+#match '/login', to: 'sessions#new', via: 'get'
+post 'login' => 'sessions#create'
+delete 'logout' => 'sessions#destroy'
 
 resources :users
   # The priority is based upon order of creation: first created -> highest priority.
