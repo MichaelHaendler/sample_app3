@@ -19,11 +19,12 @@ class User < ActiveRecord::Base
 
   def remember
   	self.remember_token = User.new_token
-  	update_attribute(:remember_digest, User.digest(remember_token))
+  	update_attribute(:remember_digest, User.digest(self.remember_token))
   end
 
-  def authenticated?(remember_token)
-  	return false if rememeber_digest.nil?
+  def authenticated?(remember_token) 
+    #QUESTION: why is remember_digest a symbol in the first line and a variable in the second line?
+  	return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
