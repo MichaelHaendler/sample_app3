@@ -1,3 +1,5 @@
+
+
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit , :update, :destroy]
   before_action :correct_user, only: [:edit , :update]
@@ -15,17 +17,29 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # def create
+  #   @user = User.new(user_params)    # Not the final implementation!
+  #   # Handle a successful save
+  #   if @user.save
+  #     log_in @user
+  #     flash[:success] = "Welcome To The Sample App!"
+  #     redirect_to user_url(@user)
+  #   else
+  #     render 'new'
+  #   end
+  # end
+
   def create
     @user = User.new(user_params)    # Not the final implementation!
     # Handle a successful save
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome To The Sample App!"
-      redirect_to user_url(@user)
+      #UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new'
     end
-
   end
 
   def edit
